@@ -3,80 +3,732 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AWS Security Specialty (SCS-C02) complete study guide. Master AWS security controls, compliance, and incident response for secure cloud architectures. Pass with NestedCerts.">
-<title>AWS Security Specialty Guide | SCS-C02 Exam Prep 2026</title>
-<link rel="preconnect" href="https://nestedcerts.com">
+<meta name="description" content="AWS Certified Security – Specialty (SCS-C03) study guide with 30 free sample practice questions and detailed explanations. Prepare for your AWS exam with NestedCerts.">
+<title>AWS Security Specialty Study Guide | SCS-C03 Free Practice Questions 2026</title>
+<link rel="canonical" href="https://mrnimbus99.github.io/aws-security-specialty-guide/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>* { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; background: linear-gradient(135deg, #0a0e1a 0%, #1a1f35 100%); color: #e8edf9; line-height: 1.7; }
 .container { max-width: 1100px; margin: 0 auto; padding: 60px 24px; }
-.hero { text-align: center; margin-bottom: 80px; animation: fadeInUp 0.8s ease; }
+.hero { text-align: center; margin-bottom: 60px; animation: fadeInUp 0.8s ease; }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 .badge { display: inline-block; padding: 8px 16px; background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 100px; font-size: 0.85rem; font-weight: 600; color: #60a5fa; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.05em; }
-h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; background: linear-gradient(135deg, #60a5fa, #06b6d4, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.02em; }
-.lead { font-size: 1.25rem; color: #9ba3b8; max-width: 700px; margin: 0 auto 32px; line-height: 1.8; }
-.cta { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; background: linear-gradient(135deg, #3b82f6, #60a5fa); color: white; border-radius: 12px; font-weight: 700; text-decoration: none; margin: 16px 8px; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3); border: none; }
+h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; background: linear-gradient(135deg, #60a5fa, #06b6d4, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.lead { font-size: 1.15rem; color: #9ba3b8; max-width: 700px; margin: 0 auto 32px; line-height: 1.8; }
+.cta { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; background: linear-gradient(135deg, #3b82f6, #60a5fa); color: white; border-radius: 12px; font-weight: 700; text-decoration: none; margin: 12px 8px; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3); border: none; }
 .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(59, 130, 246, 0.5); }
-.section { background: rgba(21, 27, 43, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 48px; margin-bottom: 40px; backdrop-filter: blur(10px); transition: all 0.3s ease; }
-.section:hover { border-color: rgba(59, 130, 246, 0.3); transform: translateY(-2px); }
-h2 { font-size: 2rem; margin-bottom: 24px; color: #60a5fa; font-weight: 700; }
-p { color: #9ba3b8; margin-bottom: 16px; line-height: 1.8; font-size: 1.05rem; }
-a { color: #60a5fa; text-decoration: none; border-bottom: 1px solid rgba(96, 165, 250, 0.3); transition: all 0.2s ease; }
+.cta-secondary { background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.3); box-shadow: none; color: #60a5fa; }
+.section { background: rgba(21, 27, 43, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 40px; margin-bottom: 32px; backdrop-filter: blur(10px); }
+h2 { font-size: 1.8rem; margin-bottom: 20px; color: #60a5fa; font-weight: 700; }
+h3 { font-size: 1.2rem; margin-bottom: 12px; color: #c4ccdf; font-weight: 600; }
+p, li { color: #9ba3b8; line-height: 1.8; font-size: 1.02rem; }
+a { color: #60a5fa; text-decoration: none; border-bottom: 1px solid rgba(96, 165, 250, 0.3); }
 a:hover { color: #06b6d4; border-bottom-color: #06b6d4; }
-ul { margin: 24px 0; padding-left: 0; list-style: none; }
-li { margin-bottom: 16px; padding-left: 32px; position: relative; color: #9ba3b8; line-height: 1.7; }
-li::before { content: "✓"; position: absolute; left: 0; color: #10b981; font-weight: 700; font-size: 1.2rem; }
-.footer { margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center; color: #6b7280; font-size: 0.95rem; }
+.domains { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 20px 0; }
+.domain-tag { padding: 12px 16px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 10px; font-size: 0.95rem; color: #a5b4fc; }
+.tips-list { list-style: none; padding: 0; }
+.tips-list li { margin-bottom: 14px; padding-left: 28px; position: relative; }
+.tips-list li::before { content: "💡"; position: absolute; left: 0; }
+.q-card { background: rgba(15, 20, 35, 0.8); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 16px; padding: 28px; margin-bottom: 20px; }
+.q-num { font-size: 0.8rem; color: #6366f1; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.q-domain { font-size: 0.78rem; color: #8b5cf6; margin-bottom: 12px; }
+.q-text { color: #d1d5e8; font-size: 1.05rem; margin-bottom: 16px; font-weight: 500; line-height: 1.7; }
+.q-options { list-style: none; padding: 0; margin-bottom: 16px; }
+.q-options li { padding: 10px 14px; margin-bottom: 6px; border-radius: 8px; background: rgba(30, 40, 65, 0.6); border: 1px solid rgba(255,255,255,0.05); font-size: 0.95rem; color: #9ba3b8; }
+.q-options li.correct { background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.3); color: #6ee7b7; }
+.q-explain { background: rgba(99, 102, 241, 0.08); border-left: 3px solid #6366f1; padding: 16px 20px; border-radius: 0 10px 10px 0; margin-top: 12px; }
+.q-explain p { font-size: 0.92rem; color: #a5b4fc; white-space: pre-line; }
+details { cursor: pointer; }
+details summary { color: #60a5fa; font-weight: 600; font-size: 0.95rem; padding: 8px 0; }
+.footer { margin-top: 60px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; color: #6b7280; font-size: 0.9rem; }
 .footer a { margin: 0 12px; }
-@media (max-width: 768px) { .container { padding: 40px 20px; } h1 { font-size: 2.5rem; } .section { padding: 32px 24px; } }</style>
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin: 24px 0; }
+.stat { text-align: center; padding: 20px; background: rgba(59, 130, 246, 0.08); border-radius: 12px; border: 1px solid rgba(59, 130, 246, 0.15); }
+.stat-num { font-size: 1.8rem; font-weight: 800; color: #60a5fa; }
+.stat-label { font-size: 0.85rem; color: #6b7280; margin-top: 4px; }
+@media (max-width: 768px) { .container { padding: 32px 16px; } .section { padding: 24px 18px; } .q-card { padding: 20px 16px; } }</style>
 </head>
 <body>
 <div class="container">
+
 <div class="hero">
-<div class="badge">Specialty Certification</div>
-<h1>AWS Security Specialty (SCS-C02)</h1>
-<p class="lead">Master AWS security controls, compliance, and incident response for secure cloud architectures.</p>
-<a href="https://nestedcerts.com/articles/security-specialty" class="cta">Start SCS-C02 Prep →</a>
+<div class="badge">Specialty Level</div>
+<h1>AWS Certified Security – Specialty (SCS-C03)</h1>
+<p class="lead">Implement security controls, incident response, and compliance frameworks across AWS environments.</p>
+<a href="https://nestedcerts.com/articles/security-specialty" class="cta">Start SCS-C03 Prep →</a>
+<a href="https://nestedcerts.com/certifications" class="cta cta-secondary">All 13 Certifications</a>
 </div>
 
 <div class="section">
-<h2>Why This Certification?</h2>
-<p>The <a href="https://nestedcerts.com/articles/security-specialty">AWS Security Specialty</a> certification validates your expertise and opens doors to higher-paying roles. It demonstrates to employers that you have production-ready AWS skills.</p>
+<h2>Exam Domains</h2>
+<p>The SCS-C03 exam tests your knowledge across these domains. Each sample question below is tagged with its domain so you can see exactly what's covered.</p>
+<div class="domains"><div class="domain-tag">Incident Response</div><div class="domain-tag">Logging and Monitoring</div><div class="domain-tag">Infrastructure Security</div><div class="domain-tag">Identity and Access Management</div><div class="domain-tag">Data Protection</div></div>
 </div>
 
 <div class="section">
-<h2>Proven Study Strategy</h2>
-<p>Success requires hands-on practice and exam-realistic questions. <a href="https://nestedcerts.com">NestedCerts provides comprehensive practice tests</a> that match the actual SCS-C02 exam format and difficulty.</p>
-<p>Follow our <a href="https://nestedcerts.com/articles/30-day-path">structured 30-day study plan</a> for daily guidance and consistent progress.</p>
+<h2>Platform Stats</h2>
+<div class="stats">
+<div class="stat"><div class="stat-num">30</div><div class="stat-label">Practice Quizzes</div></div>
+<div class="stat"><div class="stat-num">2</div><div class="stat-label">Full Exams</div></div>
+<div class="stat"><div class="stat-num">730+</div><div class="stat-label">Total Questions</div></div>
+<div class="stat"><div class="stat-num">30</div><div class="stat-label">Day Study Plan</div></div>
+</div>
 </div>
 
 <div class="section">
-<h2>What You Get with NestedCerts</h2>
-<ul>
-<li>Practice questions matching SCS-C02 exam format</li>
-<li>Detailed explanations for every answer</li>
-<li>Performance analytics showing weak areas</li>
-<li>30-day structured study plan</li>
-<li>Full-length practice exams</li>
-<li>Mobile-friendly platform</li>
+<h2>Study Tips from Our Question Writers</h2>
+<p>These tips are based on patterns we see across our SCS-C03 question bank — the topics that trip people up most often:</p>
+<ul class="tips-list"><li>IAM policies are everywhere — know policy evaluation logic, boundaries, and SCPs</li><li>Study KMS deeply — key policies, grants, CMKs, envelope encryption, and cross-account access</li><li>Understand GuardDuty, Security Hub, Detective, and Macie — what each one detects</li><li>Know incident response patterns — automated remediation with EventBridge + Lambda + Config</li><li>Master CloudTrail — management events, data events, organization trails, and log validation</li></ul>
+</div>
+
+<div class="section">
+<h2>30 Free Sample Questions</h2>
+<p>Below are 30 real practice questions from <a href="https://nestedcerts.com">NestedCerts</a> — one from each of our 30 quizzes for SCS-C03. Each includes the full explanation showing why every answer is correct or incorrect. This is exactly the quality and depth you get across all 730+ questions on the platform.</p>
+</div>
+
+<div class="q-card">
+<div class="q-num">Quiz 1 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A security engineer needs to create custom metrics in CloudWatch based on specific patterns in CloudTrail logs, such as failed console login attempts. What is the most efficient approach?</div>
+<ul class="q-options"><li>Configure CloudTrail to send metrics directly to CloudWatch</li>
+<li>Create a Lambda function to parse CloudTrail logs and publish custom metrics</li>
+<li class="correct">✓ Use CloudWatch Logs metric filters on CloudTrail logs</li>
+<li>Use Athena to query CloudTrail logs and manually create metrics</li>
 </ul>
-<a href="https://nestedcerts.com" class="cta">Start Free Practice →</a>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: CloudWatch Logs metric filters can parse log data and create custom metrics based on patterns. When CloudTrail logs are sent to CloudWatch Logs, metric filters can detect specific patterns (e.g., failed console logins) and automatically create metrics that can be used for alarms and dashboards.
+
+- Why A is wrong: CloudTrail does not send metrics directly to CloudWatch. CloudTrail delivers log files to S3 or streams events to CloudWatch Logs, but it does not natively publish CloudWatch metrics. You must use metric filters on CloudWatch Logs to extract metrics from CloudTrail events.
+
+- Why B is wrong: While a Lambda function can parse CloudTrail logs and publish custom metrics via the PutMetricData API, this requires writing and maintaining custom code. CloudWatch Logs metric filters provide this capability natively without custom development, making them more operationally efficient.
+
+- Why D is wrong: Athena is designed for ad-hoc querying of historical data stored in S3, not for continuous real-time metric creation. It does not produce CloudWatch metrics automatically and cannot drive ongoing alarms or dashboards without significant manual effort.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 2 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A company needs to send CloudWatch Logs from Lambda functions in multiple accounts to a central OpenSearch Service cluster for analysis. What is the most scalable architecture?</div>
+<ul class="q-options"><li class="correct">✓ Use CloudWatch Logs subscription filters to stream logs to Kinesis Data Firehose, which delivers to OpenSearch</li>
+<li>Configure each Lambda function to send logs directly to OpenSearch</li>
+<li>Use CloudTrail to capture Lambda logs and send to OpenSearch</li>
+<li>Export CloudWatch Logs to S3 and use Lambda to load into OpenSearch</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: CloudWatch Logs subscription filters can stream logs in real-time to Kinesis Data Firehose, which can deliver to OpenSearch Service. This provides a scalable, managed pipeline without custom code in Lambda functions. Firehose handles batching, retries, and delivery to OpenSearch.
+
+- Why B is wrong: Having each Lambda function send logs directly to OpenSearch requires custom code in every function, increases function execution time, and doesn't scale. If OpenSearch is temporarily unavailable, logs could be lost.
+
+- Why C is wrong: CloudTrail captures Lambda invocation API calls (e.g., Invoke) but does not capture application-level logs written by Lambda functions. Lambda application logs are sent to CloudWatch Logs, not CloudTrail.
+
+- Why D is wrong: Exporting CloudWatch Logs to S3 is a batch operation (not real-time) and requires a separate Lambda function to load data into OpenSearch. This adds latency and complexity compared to the streaming approach with subscription filters and Firehose.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 3 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A security engineer enabled CloudTrail in the us-east-1 region and confirmed that management events are being logged to the designated S3 bucket. However, S3 object-level API calls (such as GetObject and PutObject) for a specific bucket are not appearing in the trail. What is the most likely cause?</div>
+<ul class="q-options"><li>CloudTrail data events for S3 can only be delivered to a CloudWatch Logs log group, not to the trail's S3 bucket</li>
+<li class="correct">✓ S3 data events are not enabled in the CloudTrail trail configuration for that bucket</li>
+<li>The S3 bucket being monitored is in a different region than the trail</li>
+<li>S3 server access logging must be enabled before CloudTrail can capture data events</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct (B): S3 data events (object-level API calls like GetObject, PutObject, DeleteObject) must be explicitly enabled in the CloudTrail trail configuration. By default, trails only log management events. Data events must be configured separately using event selectors or advanced event selectors, and can be scoped to all S3 buckets or specific buckets. Without enabling data events for the target bucket, no object-level activity will appear.
+
+- Why A is wrong: CloudTrail data events are delivered to the same destinations as management events — the trail's S3 bucket and optionally a CloudWatch Logs log group. There is no separate destination requirement for data events; they flow through the trail like any other CloudTrail event.
+
+- Why C is wrong: CloudTrail trails can log data events for S3 buckets in any region. A trail configured as a multi-region trail or an organization trail captures events regardless of the bucket's region.
+
+- Why D is wrong: S3 server access logging and CloudTrail data events are completely independent mechanisms. Server access logging writes access records to another S3 bucket, while CloudTrail records API calls. Neither requires the other to function.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 4 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">An organization wants to implement automated security assessments that run daily across all accounts, checking for unencrypted EBS volumes, public RDS snapshots, and open security groups. The solution should provide a compliance dashboard. Which combination is most appropriate? (Select TWO)</div>
+<ul class="q-options"><li>GuardDuty for configuration compliance</li>
+<li class="correct">✓ Config conformance packs for automated assessments</li>
+<li>Macie for infrastructure scanning</li>
+<li class="correct">✓ Security Hub security standards for continuous compliance checking</li>
+<li>CloudTrail for compliance monitoring</li>
+<li>VPC Flow Logs for security group analysis</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why B and D are correct: Security Hub security standards (such as AWS Foundational Security Best Practices and CIS Benchmarks) continuously evaluate resources against predefined controls—including checks for unencrypted EBS volumes, public RDS snapshots, and overly permissive security groups—and present results in a compliance dashboard. Config conformance packs bundle multiple Config rules with optional Systems Manager Automation remediation actions and can be deployed organization-wide via AWS Organizations, enabling daily automated assessments at scale. Together they cover detection, dashboarding, and remediation.
+
+- Why A is wrong: GuardDuty is a threat-detection service that analyzes VPC Flow Logs, DNS logs, and CloudTrail management events for malicious activity (e.g., compromised instances, credential exfiltration). It does not evaluate resource configuration settings such as encryption or security group rules.
+
+- Why C is wrong: Macie uses machine learning to discover and classify sensitive data stored in S3 buckets (PII, financial data, credentials). It does not assess infrastructure configuration compliance for EBS, RDS, or security groups.
+
+- Why E is wrong: CloudTrail records API calls (who did what, when, and from where) but does not evaluate whether the resulting resource state is compliant. It is an audit trail, not a compliance engine.
+
+- Why F is wrong: VPC Flow Logs capture network flow metadata (source/destination IPs, ports, protocol, accept/reject). They do not inspect security group rules or assess resource configuration compliance.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 5 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A security engineer detects a GuardDuty finding indicating command-and-control activity on an EC2 instance in a production VPC. The incident response plan requires immediate, automated isolation of the affected instance without disrupting other instances in the same subnet. Which Systems Manager capability is most appropriate?</div>
+<ul class="q-options"><li>Systems Manager Run Command to execute a shell script that modifies network ACLs</li>
+<li class="correct">✓ Systems Manager Automation documents with security group modification actions</li>
+<li>Systems Manager State Manager to enforce a compliant security group association</li>
+<li>Systems Manager Session Manager to manually log in and detach the ENI</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Systems Manager Automation documents provide reusable, version-controlled runbooks that can programmatically replace an instance's security group with a quarantine security group (denying all traffic) as a single orchestrated step. Automation documents support parameters, conditional branching, error handling, and can be triggered automatically by EventBridge, making them ideal for repeatable, consistent incident isolation that minimizes blast radius.
+
+- Why A is wrong: Run Command can execute scripts on instances, but it requires the SSM Agent to be reachable on the target instance. If the instance is compromised or the agent is disabled, Run Command cannot execute. Additionally, modifying network ACLs affects the entire subnet, not just the compromised instance, which could disrupt healthy workloads.
+
+- Why C is wrong: State Manager enforces a desired configuration on a schedule or at regular intervals, but it is designed for drift remediation over time, not for immediate, event-driven incident isolation. It cannot be triggered on-demand by a security finding.
+
+- Why D is wrong: Session Manager provides interactive shell access, but manually logging in and detaching an ENI is a slow, manual process that doesn't scale across multiple instances and introduces human error. Automation documents execute the same isolation steps in seconds without manual intervention.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 6 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A security team at a financial services company receives an alert that a terminated employee's IAM credentials were used overnight. The team suspects data was exfiltrated from S3 buckets containing customer records. Which THREE log sources should the team analyze to determine what data was accessed and where it was sent? (Select THREE)</div>
+<ul class="q-options"><li>EC2 instance metadata</li>
+<li class="correct">✓ CloudTrail S3 data events</li>
+<li class="correct">✓ S3 server access logs</li>
+<li class="correct">✓ VPC Flow Logs showing outbound traffic</li>
+<li>CloudFront distribution settings</li>
+<li>IAM policy documents</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: CloudTrail S3 data events (B) log object-level API calls such as GetObject and PutObject, showing exactly which objects were accessed and by which principal. S3 server access logs (C) provide detailed request-level information including requester IP, request time, and HTTP status, which helps correlate with CloudTrail findings. VPC Flow Logs (D) capture network metadata for traffic leaving the VPC, revealing outbound data transfer volumes and destination IPs that may indicate exfiltration endpoints.
+
+- Why A is wrong: EC2 instance metadata provides information about the instance itself (instance ID, AMI, IAM role) but does not log data access activity. It is not a log source for tracking S3 data exfiltration.
+
+- Why E is wrong: CloudFront distribution settings define CDN configuration (origins, behaviors, caching) but do not record which S3 objects were accessed directly via the S3 API.
+
+- Why F is wrong: IAM policy documents define what actions a principal is allowed to perform, but they do not record actual API calls or data access events. They show permissions, not activity.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 7 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A security team discovers that 15 EC2 instances across three Availability Zones may have been compromised by the same malware. They need to capture forensic evidence — including volatile memory and disk snapshots — from all affected instances as quickly as possible while maintaining chain of custody. What approach is MOST efficient? (Select TWO)</div>
+<ul class="q-options"><li class="correct">✓ Use Automated Forensics Orchestrator for Amazon EC2 to automate evidence isolation, capture, and storage</li>
+<li>Create AMIs of each instance and analyze the images individually in a forensic account</li>
+<li>Manually SSH into each instance and run forensic collection scripts one at a time</li>
+<li>Terminate all instances and restore from the latest known-good backup</li>
+<li class="correct">✓ Use Systems Manager Run Command to execute forensic collection scripts across all instances simultaneously</li>
+<li>Use CloudWatch Logs Insights to query instance memory contents remotely</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Systems Manager Run Command can execute forensic collection scripts (memory dumps, disk imaging commands) across all 15 instances simultaneously without requiring SSH access — it uses the SSM Agent already installed on managed instances. Automated Forensics Orchestrator (AFO) for Amazon EC2 is an AWS solution that automates the entire forensic workflow: isolating compromised instances, capturing memory and disk evidence, and storing artifacts in S3 with integrity verification. Together they provide the fastest, most scalable approach for multi-instance forensic collection.
+
+- Why B is wrong: Creating AMIs captures disk state but misses volatile memory (running processes, active network connections, in-memory encryption keys). AMI creation is also slower per instance and does not automate the full forensic chain of custody. For forensics, you need both memory and disk artifacts.
+
+- Why C is wrong: Manually connecting via SSH does not scale to 15 instances across 3 AZs. It is error-prone (inconsistent script execution), time-consuming, and requires network access that may be restricted during containment. SSM Run Command provides agentless-like execution through the SSM Agent without opening SSH ports.
+
+- Why D is wrong: Terminating instances and restoring from backup destroys all forensic evidence — volatile memory, running processes, and any attacker artifacts not present in the backup. Evidence preservation is a prerequisite for root cause analysis.
+
+- Why F is wrong: CloudWatch Logs Insights queries log data that has already been shipped to CloudWatch. It cannot capture instance memory contents, disk images, or other host-level forensic artifacts needed for a compromise investigation.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 8 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A retail company's CloudFront-hosted e-commerce site is experiencing inventory hoarding by automated bots that add items to carts but never complete purchases. The security team needs to block these bots while allowing legitimate customers and search engine crawlers to access the site. What is the MOST effective approach?</div>
+<ul class="q-options"><li>Create a WAF rate-based rule to block all IPs exceeding 100 requests per 5 minutes</li>
+<li>Enable CloudFront geographic restrictions to block countries with the highest bot traffic</li>
+<li class="correct">✓ AWS WAF Bot Control managed rule group with targeted protection level for client fingerprinting</li>
+<li>Configure CloudFront signed URLs to require authentication for all page requests</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: AWS WAF Bot Control with targeted protection level uses machine learning, browser fingerprinting (JavaScript challenges, TLS fingerprint analysis), and behavioral signals to distinguish between legitimate users, verified bots (such as search engine crawlers), and malicious automated bots. Targeted protection goes beyond simple rate limiting by analyzing client-side signals to identify sophisticated bots that mimic human behavior, making it the most effective approach for inventory hoarding bots.
+
+- Why A is wrong: Rate-based rules limit requests per IP but cannot distinguish between a legitimate user browsing heavily and an automated bot. Bots that rotate IPs or operate below the threshold would bypass this control entirely, and it risks blocking legitimate high-traffic users during flash sales.
+
+- Why B is wrong: Geographic restrictions block all users from specified countries, impacting legitimate international customers. Bots can operate from any geography, including the company's primary customer markets, making geo-blocking ineffective against distributed bot networks.
+
+- Why D is wrong: Signed URLs are designed for restricting access to premium or private content, not for bot detection. Requiring signed URLs for all pages would break normal browsing workflows, prevent search engine indexing, and does not address the bot identification problem.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 9 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A development team is integrating automated security scanning into their CI/CD pipeline for a Java microservice before it is deployed to Amazon ECS. The security engineer selects Amazon CodeGuru Security to scan the code repository. Which THREE types of security issues does CodeGuru Security detect? (Select THREE)</div>
+<ul class="q-options"><li class="correct">✓ Hardcoded secrets and credentials embedded in source code</li>
+<li>Overly permissive IAM policies attached to deployment roles</li>
+<li class="correct">✓ SQL injection, command injection, and other code-level injection flaws</li>
+<li>Misconfigured Amazon S3 bucket policies</li>
+<li class="correct">✓ Insecure cryptographic implementations and resource leaks</li>
+<li>Unpatched operating system vulnerabilities on build servers</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Amazon CodeGuru Security uses machine learning and automated reasoning to analyze application source code. It specifically detects: (1) hardcoded secrets such as passwords, API keys, and access tokens embedded in source code; (2) code-level injection flaws including SQL injection, command injection, and LDAP injection; and (3) insecure cryptographic implementations and resource leaks such as improper cipher initialization or unclosed connections. These are all code-level security issues that CodeGuru is purpose-built to find before deployment.
+
+- Why B is wrong: IAM policy analysis is performed by IAM Access Analyzer, not CodeGuru Security. CodeGuru analyzes application source code, not AWS resource policies.
+
+- Why D is wrong: S3 bucket policy misconfiguration is evaluated by AWS Config rules or IAM Access Analyzer. CodeGuru Security operates on application code repositories, not AWS infrastructure configurations.
+
+- Why F is wrong: Operating system patch status is assessed by Amazon Inspector (for EC2 instances) or Systems Manager Patch Manager. CodeGuru Security analyzes application code, not the underlying OS packages on build servers.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 10 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A security team needs AWS Network Firewall to decrypt and inspect outbound HTTPS traffic from application servers before it leaves the VPC. The team must ensure encrypted traffic to specific external APIs is inspected for data exfiltration patterns. What configuration is required?</div>
+<ul class="q-options"><li class="correct">✓ Configure a CA certificate in AWS Certificate Manager (ACM), associate it with a TLS inspection configuration, and define an inspection scope to select which traffic to decrypt</li>
+<li>Import individual server certificates for each destination domain and attach them directly to Network Firewall rule groups</li>
+<li>Enable TLS inspection globally on the firewall with no additional certificate configuration required</li>
+<li>Create an IPsec tunnel between Network Firewall and each destination to decrypt traffic at the endpoint</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why A is correct: For outbound TLS inspection, AWS Network Firewall acts as a man-in-the-middle proxy. You must provide a CA certificate (via ACM) that the firewall uses to dynamically generate server certificates for intercepted connections. The TLS inspection configuration defines the CA certificate and scope (which traffic to decrypt based on source/destination criteria). Without the CA certificate, the firewall cannot re-sign traffic after inspection.
+
+- Why B is wrong: Individual server certificates are used for inbound TLS inspection (where you own the destination servers), not outbound. For outbound traffic, a CA certificate is needed so the firewall can dynamically generate certificates for arbitrary external domains.
+
+- Why C is wrong: TLS inspection cannot be enabled without certificate configuration. The firewall needs cryptographic material (a CA certificate for outbound, or server certificates for inbound) to terminate and re-establish TLS sessions.
+
+- Why D is wrong: IPsec is a VPN protocol for site-to-site encryption, not a mechanism for TLS traffic inspection. Network Firewall uses TLS termination and re-encryption, not IPsec tunnels.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 11 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A financial services company hosts a web application on EC2 instances behind an Application Load Balancer with Amazon CloudFront. A recent penetration test revealed SQL injection vulnerabilities. The security team wants to implement defense-in-depth to protect against SQL injection at multiple layers. Which THREE actions should the team take? (Select THREE)</div>
+<ul class="q-options"><li>Enable Amazon GuardDuty to detect and block SQL injection attempts in real time</li>
+<li class="correct">✓ Add an AWS WAF web ACL with a SQL injection match condition rule set on the CloudFront distribution</li>
+<li class="correct">✓ Refactor the application code to use parameterized queries for all database interactions</li>
+<li>Enable VPC Flow Logs to capture and filter SQL injection payloads at the network layer</li>
+<li class="correct">✓ Implement server-side input validation and sanitization in the application layer</li>
+<li>Configure Amazon Inspector to scan running EC2 instances for active SQL injection attacks</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: (B) AWS WAF with SQL injection match conditions inspects HTTP requests at the CloudFront edge and blocks malicious SQL patterns before they reach the origin. (C) Parameterized queries (prepared statements) prevent SQL injection at the database layer by separating SQL logic from user-supplied input, making it impossible for injected code to alter query structure. (E) Server-side input validation provides an additional application-layer defense by rejecting or sanitizing unexpected characters before they reach database logic. Together these three controls provide defense-in-depth across edge, application, and database layers.
+
+- Why A is wrong: Amazon GuardDuty is a threat-detection service that analyzes VPC Flow Logs, DNS logs, and CloudTrail events for suspicious activity. It does not inspect HTTP request payloads and cannot detect or block SQL injection attempts.
+
+- Why D is wrong: VPC Flow Logs capture IP-level metadata (source/destination IP, ports, protocol, bytes transferred). They do not inspect packet payloads, so they cannot detect or filter SQL injection strings embedded in HTTP requests.
+
+- Why F is wrong: Amazon Inspector scans for known software vulnerabilities (CVEs) and network reachability issues on EC2 instances. It does not monitor live application traffic or detect active SQL injection attacks.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 12 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A multinational company uses Azure AD as its corporate identity provider and is adopting AWS. The security team needs to enable employees to access multiple AWS accounts using their existing Azure AD credentials through IAM Identity Center. Which federation protocol should be configured between Azure AD and IAM Identity Center?</div>
+<ul class="q-options"><li>OAuth 2.0 with client credentials grant</li>
+<li>LDAP over SSL (LDAPS) direct binding</li>
+<li class="correct">✓ SAML 2.0 federation</li>
+<li>OpenID Connect (OIDC) with authorization code flow</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: IAM Identity Center integrates with external identity providers exclusively through SAML 2.0 for federation. Azure AD is configured as a SAML 2.0 IdP, and IAM Identity Center acts as the service provider. Users authenticate with Azure AD, which issues a SAML assertion that IAM Identity Center consumes to grant access to AWS accounts.
+
+- Why A is wrong: OAuth 2.0 client credentials grant is used for machine-to-machine authentication, not for federating human user identities between an IdP and IAM Identity Center.
+
+- Why B is wrong: LDAPS is used for directory queries and bind authentication between applications and directory servers. IAM Identity Center does not use LDAPS for external IdP federation; it relies on SAML 2.0.
+
+- Why D is wrong: While IAM Identity Center uses OIDC internally for some features (such as issuing tokens to client applications), the external IdP connection for workforce federation is strictly SAML 2.0, not OIDC.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 13 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A media company stores assets in an S3 bucket in Account A. A partner company operating in Account B (a separate AWS Organization) needs to upload large media files to a specific prefix (/partner-uploads/) in the bucket. The security team requires that no long-term credentials are shared, access is scoped to only the upload prefix, and access can be revoked immediately if needed. Which approach meets ALL requirements?</div>
+<ul class="q-options"><li>Share Account A root credentials with the partner's development team over an encrypted channel</li>
+<li>Disable S3 Block Public Access on the bucket and distribute pre-signed URLs that expire weekly</li>
+<li>Create an IAM user in Account A with an inline policy scoped to the prefix and send the access keys to the partner</li>
+<li class="correct">✓ Configure an S3 bucket policy in Account A granting s3:PutObject to the partner's specific IAM role ARN scoped to the /partner-uploads/* prefix, and ensure the partner's Account B role has an identity-based policy allowing s3:PutObject on Account A's bucket</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct (D): An S3 bucket policy in Account A grants cross-account access to the partner's IAM role ARN, scoped to only the /partner-uploads/* prefix. The partner's role in Account B needs a matching identity-based policy. For cross-account S3 access, either a resource-based policy (bucket policy) or role assumption is required—both sides must explicitly allow. The bucket policy approach avoids creating IAM users, uses only temporary role credentials, and access can be revoked instantly by removing the bucket policy statement.
+
+- Why A is wrong: Root credentials must never be shared. This violates the AWS Well-Architected Security Pillar and provides unrestricted account-level access far beyond the /partner-uploads/ prefix.
+
+- Why B is wrong: Disabling S3 Block Public Access exposes the bucket to the internet, not just the partner. Pre-signed URLs grant temporary access but are tied to the signing identity's permissions and become difficult to manage at scale. This also violates the immediate revocation requirement since distributed URLs remain valid until expiration.
+
+- Why C is wrong: Creating an IAM user with access keys creates long-term credentials, which directly violates the requirement that no long-term credentials be shared. Access keys must be rotated and can be leaked, whereas role-based temporary credentials expire automatically.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 14 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A company allows a team of developers to create IAM roles for their Lambda functions in a shared development account. The security team discovers that one developer created a role with AdministratorAccess. How should the security team prevent developers from granting permissions that exceed their own authorized scope?</div>
+<ul class="q-options"><li class="correct">✓ Attach permission boundaries to the developers' IAM entities that cap the maximum permissions any role they create can have</li>
+<li>Use an SCP to deny all IAM role creation actions for the development account</li>
+<li>Grant developers PowerUserAccess, which automatically prevents privilege escalation on created roles</li>
+<li>Create an AWS Config rule that deletes any IAM role created with more than ten policy statements</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct (A): Permission boundaries define the maximum permissions an IAM entity can have. When developers create roles, you can require them to attach a specific permission boundary via an IAM policy condition (iam:PermissionsBoundary). This allows developers to create roles freely but ensures those roles cannot exceed the boundary. This is the AWS-recommended approach for delegated administration without privilege escalation.
+
+- Why B is wrong: Denying all IAM role creation is too restrictive. The requirement is to let developers create roles while preventing escalation, not to block role creation entirely. SCPs operate at the account level and do not provide the granularity needed to cap the permission scope of created resources.
+
+- Why C is wrong: PowerUserAccess is a managed policy that grants broad permissions but excludes IAM and Organizations actions. It does not inherently prevent privilege escalation for users who ARE allowed to create IAM roles. The question specifies developers need role-creation ability, which PowerUserAccess does not grant.
+
+- Why D is wrong: AWS Config can detect non-compliant resources, but counting policy statements does not determine privilege level—a single-statement policy could grant AdministratorAccess. Auto-deletion is also reactive rather than preventive, and could disrupt running workloads that depend on the role.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 15 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A security team needs to provide 200 remote developers with encrypted access to resources inside a private VPC. Developers work from personal devices in multiple countries, and the solution must support certificate-based mutual authentication with split-tunnel routing so that only AWS-bound traffic uses the VPN. Which service meets these requirements?</div>
+<ul class="q-options"><li>AWS Site-to-Site VPN with a virtual private gateway</li>
+<li class="correct">✓ AWS Client VPN with mutual authentication and a split-tunnel configuration</li>
+<li>AWS Direct Connect with a private virtual interface</li>
+<li>An internet-facing Application Load Balancer with IP-based security group rules</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct (B): AWS Client VPN is an OpenVPN-based managed service designed for individual remote users connecting to a VPC. It supports mutual (certificate-based) authentication, Active Directory, and SAML-based authentication. Split-tunnel mode routes only AWS-destined traffic through the VPN tunnel, reducing bandwidth usage. This is the purpose-built solution for remote workforce access to private VPC resources.
+
+- Why A is wrong: Site-to-Site VPN connects an entire on-premises network to AWS via IPsec tunnels between a customer gateway device and a virtual private gateway (or Transit Gateway). It is not designed for individual remote users on personal devices — it requires a dedicated gateway appliance on the corporate network side.
+
+- Why C is wrong: AWS Direct Connect provides a dedicated physical network connection between an on-premises data center and AWS. It requires physical infrastructure at a colocation facility and is not suitable for remote developers working from personal devices across different countries.
+
+- Why D is wrong: An internet-facing ALB exposes resources to the public internet. Security group IP-based rules cannot provide encrypted tunnel access, do not support mutual certificate authentication, and are impractical when developers have dynamic IP addresses across many countries.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 16 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A healthcare organization stores protected health information (PHI) in Amazon S3. A recent security audit requires the team to implement defense-in-depth controls that protect data at rest against unauthorized access, accidental deletion, and ransomware. Which TWO controls should the team implement to address the broadest combination of these threats? (Select TWO)</div>
+<ul class="q-options"><li>Enable S3 Transfer Acceleration to improve upload performance for large medical imaging files</li>
+<li class="correct">✓ Enable S3 Object Lock in compliance mode with a retention period matching the data retention requirement</li>
+<li class="correct">✓ Configure AWS Backup with Vault Lock in compliance mode and cross-Region copy rules</li>
+<li>Configure Amazon CloudFront with origin access control for the S3 bucket</li>
+<li>Enable S3 Intelligent-Tiering to automatically optimize storage class placement</li>
+<li>Implement S3 Requester Pays to reduce organizational data transfer costs</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: S3 Object Lock in compliance mode provides WORM (Write Once Read Many) storage that prevents any user—including the root account—from deleting or modifying objects during the retention period, directly addressing accidental deletion and ransomware threats. AWS Backup with Vault Lock in compliance mode ensures backup recovery points cannot be deleted by anyone (including administrators) once the grace period expires, while cross-Region copy rules provide geographic redundancy. Together these controls protect both the primary data layer and the backup layer with immutability.
+
+- Why 'S3 Transfer Acceleration' is wrong: Transfer Acceleration uses Amazon CloudFront edge locations to speed up uploads over long distances. It is a performance optimization feature and provides no data-at-rest protection, encryption, or immutability.
+
+- Why 'CloudFront with origin access control' is wrong: Origin access control restricts direct S3 access so users must go through CloudFront. This is an access-control mechanism for content delivery, not a data-at-rest protection control against deletion or ransomware.
+
+- Why 'S3 Intelligent-Tiering' is wrong: Intelligent-Tiering automatically moves objects between frequent and infrequent access tiers to optimize costs. It has no security, immutability, or data protection capability.
+
+- Why 'Requester Pays' is wrong: Requester Pays shifts data transfer and request costs to the requester. It is a billing configuration with no data-at-rest security function.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 17 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A junior engineer schedules a KMS customer managed key for deletion with a 7-day waiting period. The key encrypts production data across multiple services. The security lead is concerned the waiting period is too short. What should the security lead recommend?</div>
+<ul class="q-options"><li>Cancel the scheduled deletion and disable the key permanently instead of deleting it</li>
+<li class="correct">✓ Cancel the deletion, reschedule with a 30-day waiting period, and set up a CloudTrail-based CloudWatch alarm for any Decrypt calls referencing the key during the waiting period</li>
+<li>Allow the 7-day deletion to proceed since KMS keys can be restored from backups after deletion completes</li>
+<li>Cancel the deletion, delete all data encrypted by the key first, then reschedule deletion with a 7-day waiting period</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Extending the waiting period to 30 days provides the maximum safety window. Monitoring CloudTrail for failed Decrypt calls using the key during the waiting period reveals any services or data that still depend on it. If dependencies are found, the deletion can be cancelled before it becomes irreversible.
+
+- Why A is wrong: Disabling the key permanently without deleting it leaves orphaned key metadata indefinitely and does not address whether the key is still needed. It avoids making a decision rather than safely completing one.
+
+- Why C is wrong: Once a KMS key deletion completes, the key material is permanently destroyed and cannot be recovered. Any data encrypted solely with that key becomes permanently inaccessible. The 7-day window is too short for a production key used across multiple services.
+
+- Why D is wrong: Deleting all encrypted data first is impractical for a production key used across multiple services, and a 7-day window still does not address the original concern about insufficient safety margin.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 18 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A company uses AWS Secrets Manager to store Amazon RDS for MySQL database credentials. Applications retrieve credentials at runtime using the Secrets Manager API. During a recent automatic rotation, the application experienced brief connection failures because it was still using old credentials when the database password changed. A security engineer needs to prevent this issue in future rotations. What should the engineer do?</div>
+<ul class="q-options"><li>Configure the Secrets Manager rotation Lambda function to use a single-user rotation strategy with an extended rotation window</li>
+<li class="correct">✓ Configure the Secrets Manager rotation Lambda function to use an alternating-users rotation strategy with two sets of credentials</li>
+<li>Increase the automatic rotation interval from 30 days to 90 days to reduce the frequency of disruptions</li>
+<li>Cache the database credentials in the application's environment variables and restart the application after each rotation</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: The alternating-users rotation strategy maintains two sets of credentials (using AWSCURRENT and AWSPREVIOUS staging labels). During rotation, a new set of credentials is created while the old set remains valid, preventing connection failures. This is the recommended approach for zero-downtime rotation.
+
+- Why A is wrong: The single-user rotation strategy changes the password on the existing database user. If the application holds a cached copy of the old credentials, connections fail during the brief window between when the password changes and the application retrieves the new secret. An extended rotation window does not eliminate this gap.
+
+- Why C is wrong: Increasing the rotation interval from 30 to 90 days reduces the frequency of disruptions but does not prevent the connection failure when rotation eventually occurs. It also weakens the security posture by extending how long a potentially compromised credential remains valid.
+
+- Why D is wrong: Caching credentials in environment variables means the application will not pick up rotated credentials until restarted, causing a hard dependency on application restarts during rotation. This defeats the purpose of automatic rotation and introduces downtime.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 19 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A security team at a financial company manages 150 AWS accounts in AWS Organizations. The CISO wants to centralize threat detection and compliance monitoring without granting the security team direct access to the management account. Which TWO actions should the security architect implement? (Select TWO)</div>
+<ul class="q-options"><li class="correct">✓ Register the security account as a delegated administrator for Amazon GuardDuty to centrally manage threat detection across all member accounts</li>
+<li>Create IAM roles in the management account and share the credentials with the security team for direct management account access</li>
+<li>Deploy individual GuardDuty configurations manually in each member account using CloudFormation StackSets</li>
+<li class="correct">✓ Register the security account as a delegated administrator for AWS Security Hub to aggregate and manage findings across all member accounts</li>
+<li>Use the management account directly for all security service management to maintain a single point of control</li>
+<li>Create a separate AWS Organization for the security team and use cross-organization trust policies</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Delegated administrator is the AWS-recommended approach for centralizing security service management without using the management account directly. Registering the security account as a delegated administrator for GuardDuty (A) allows centralized threat detection management, and doing the same for Security Hub (D) allows centralized finding aggregation. Both services support delegated administration through AWS Organizations, enabling the security team to manage these services across all 150 accounts from a single dedicated security account.
+
+- Why B is wrong: Sharing management account credentials violates the principle of least privilege. The management account should have tightly restricted access — AWS recommends minimizing its use and instead leveraging delegated administration.
+
+- Why C is wrong: While StackSets can deploy GuardDuty configurations, this approach lacks centralized management. Each account would have independent GuardDuty instances without aggregated visibility — the delegated admin model provides a single pane of glass.
+
+- Why E is wrong: Using the management account directly for security operations is an anti-pattern. AWS recommends limiting management account usage to organizational governance only, and delegating service management to dedicated accounts.
+
+- Why F is wrong: You cannot create cross-organization trust policies in AWS Organizations. Each organization is a separate trust boundary, and splitting accounts across organizations would fragment governance rather than centralize it.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 20 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A security team is integrating automated CloudFormation template validation into their CI/CD pipeline. They need to catch misconfigurations—such as incorrect resource property values and unsupported resource types—before templates reach the deployment stage. Which tool should they integrate, and what types of issues will it detect?</div>
+<ul class="q-options"><li>AWS Config rules — evaluates resource compliance after deployment to detect non-compliant configurations</li>
+<li>CloudFormation Change Sets — previews what resource modifications CloudFormation will make during a stack update</li>
+<li class="correct">✓ cfn-lint — detects template syntax errors, invalid resource property values, and unsupported resource types before deployment</li>
+<li>CloudFormation Guard — evaluates templates against custom policy-as-code rules for organizational standards</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: cfn-lint is a static analysis tool that validates CloudFormation templates against the AWS CloudFormation resource specification. It catches syntax errors (malformed YAML/JSON), invalid resource property values (e.g., an unsupported EC2 instance type), missing required properties, and deprecated resource types—all before deployment. Integrating cfn-lint into CI/CD pipelines provides fast, automated validation that prevents malformed templates from being deployed.
+
+- Why A is wrong: AWS Config evaluates resource compliance after deployment. It cannot catch template errors in the pipeline because resources must already exist for Config to evaluate them. Config is a post-deployment detective control, not a pre-deployment validation tool.
+
+- Why B is wrong: CloudFormation Change Sets preview what resources will be created, modified, or deleted during a stack update. However, they do not validate template correctness or catch property-level errors. A Change Set will still be created for a template with an invalid property value—the error only surfaces at deployment time.
+
+- Why D is wrong: CloudFormation Guard validates templates against custom policy-as-code rules (e.g., 'all S3 buckets must have encryption enabled'). It does not check template syntax or validate resource properties against the AWS specification. Guard and cfn-lint are complementary—cfn-lint checks correctness, Guard checks policy compliance.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 21 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">Security Hub security score needs to be improved. What actions improve the score?</div>
+<ul class="q-options"><li>Ignore findings</li>
+<li>No score improvement possible</li>
+<li class="correct">✓ Remediate failed security checks and enable additional security controls</li>
+<li>Disable Security Hub</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Security score reflects percentage of passed security checks. Remediating failed checks (enable encryption, remove public access) improves score. Enabling additional controls increases coverage. This provides measurable security improvement.
+
+- Why A is wrong: Ignoring findings doesn't improve actual security posture.
+
+- Why C is wrong: Disabling Security Hub eliminates security monitoring.
+
+- Why D is wrong: Remediation specifically improves security score.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 22 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A security team at a financial company uses AWS Config rules to detect EC2 instances that lack required encryption. The team currently reviews non-compliant findings manually and creates tickets for remediation, but fixes often take days. The team wants to reduce remediation time to minutes. What should the team implement?</div>
+<ul class="q-options"><li class="correct">✓ Configure Config remediation actions that invoke Systems Manager Automation documents to automatically enable encryption on non-compliant instances</li>
+<li>Create an Amazon SNS topic that notifies an on-call engineer to manually encrypt the instances when non-compliance is detected</li>
+<li>Deploy a scheduled AWS Lambda function that runs daily to scan for and encrypt all non-compliant instances</li>
+<li>Configure an EventBridge rule that sends non-compliance events to an SQS queue for batch processing by the operations team</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: AWS Config supports automatic remediation actions that invoke AWS Systems Manager Automation documents when a resource is found non-compliant. This provides near-real-time remediation without manual intervention. You can use AWS-managed SSM documents (e.g., AWS-EnableEbsEncryption) or create custom ones. Auto-remediation triggers each time Config evaluates a resource and finds it non-compliant.
+
+- Why B is wrong: SNS notifications alert engineers but still require manual action. This doesn't reduce remediation time to minutes since it depends on human response time and availability.
+
+- Why C is wrong: A scheduled Lambda function running daily introduces up to 24 hours of delay between non-compliance and remediation. It also duplicates functionality that Config remediation natively provides and adds maintenance overhead for the Lambda code.
+
+- Why D is wrong: Sending events to SQS creates a queue of items to process but doesn't perform remediation by itself. An additional consumer would need to process the queue, adding architectural complexity without the built-in remediation that Config already offers.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 23 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A European financial services company must store all security telemetry within the EU to satisfy GDPR data residency requirements. They want to use Amazon Security Lake to centralize logs from multiple AWS accounts across eu-west-1 and eu-central-1. Which approach ensures data residency compliance while enabling centralized analysis?</div>
+<ul class="q-options"><li>Enable Security Lake in a single US region and replicate data to EU regions for analysis</li>
+<li class="correct">✓ Enable Security Lake in each required EU region and configure a rollup region within the EU to centralize data while keeping all storage within EU boundaries</li>
+<li>Deploy Security Lake globally and use S3 bucket policies to restrict read access to EU-based IAM principals</li>
+<li>Store raw logs in S3 in EU regions and use Security Lake in us-east-1 to remotely index the data without copying it</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct (B): Security Lake is a regional service—data is stored in the AWS Region where it is enabled. For GDPR compliance, you enable Security Lake in EU regions and designate one EU region as a rollup region to aggregate data from other EU contributing regions. This keeps all data within EU boundaries while providing centralized query capability.
+
+- Why A is wrong: Enabling Security Lake in a US region means security data is initially stored outside the EU, violating GDPR data residency requirements even if later replicated to EU.
+
+- Why C is wrong: S3 bucket policies control access permissions, not data storage location. If Security Lake is enabled globally, data would be stored in non-EU regions regardless of who can read it.
+
+- Why D is wrong: Security Lake does not support remote indexing of S3 data in other regions without copying it. Security Lake stores ingested data in its own managed S3 buckets within the region where it is enabled.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 24 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A financial services company uses AWS Backup to protect critical databases and EBS volumes against ransomware. The security team wants to validate that backups can actually be restored and used for recovery. The team needs an automated approach that minimizes operational overhead while providing confidence in backup usability. Which approach BEST validates backup integrity?</div>
+<ul class="q-options"><li>Configure AWS Backup Audit Manager to generate daily compliance reports verifying that backup jobs completed successfully for all protected resources</li>
+<li class="correct">✓ Create an AWS Backup restore testing plan that automatically restores recovery points to an isolated VPC on a weekly schedule and validates data integrity</li>
+<li>Set up Amazon CloudWatch alarms on the AWS Backup NumberOfBackupJobsCompleted metric to alert the team when any backup job fails</li>
+<li>Enable AWS Backup cross-Region copy rules to replicate all recovery points to a secondary Region and assume the successful copy confirms integrity</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: AWS Backup restore testing plans automatically restore recovery points on a defined schedule into an isolated environment, run validation checks, and then clean up the restored resources. This directly proves that backups are usable for ransomware recovery without manual effort or production risk.
+
+- Why A is wrong: AWS Backup Audit Manager generates compliance reports about whether backups exist and meet policy requirements, but it does not actually restore backups or verify that the data inside them is intact and recoverable. A backup job can succeed yet produce an unrestorable recovery point.
+
+- Why C is wrong: CloudWatch alarms detect backup job failures in real time, which is useful for operational monitoring, but a successful backup job status does not guarantee the backup's data integrity or that it can be fully restored in a disaster scenario.
+
+- Why D is wrong: Cross-Region copy provides geographic redundancy, but copying a backup to another Region does not validate that the backup can be restored or that the application will function after restoration. You would have the same unverified backup in two locations.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 25 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A company hosts a static website on Amazon S3 behind Amazon CloudFront. A security audit reveals that users can bypass CloudFront by accessing the S3 bucket URL directly, circumventing AWS WAF rules attached to the distribution. The S3 objects are encrypted with SSE-KMS. Which solution prevents direct S3 access while maintaining compatibility with the encryption method?</div>
+<ul class="q-options"><li>Configure the S3 bucket policy to allow public read access and rely on CloudFront caching to serve content</li>
+<li>Create a CloudFront Origin Access Identity (OAI) and update the S3 bucket policy to grant the OAI read access</li>
+<li class="correct">✓ Configure CloudFront Origin Access Control (OAC) and update the S3 bucket policy to allow only the CloudFront distribution's service principal</li>
+<li>Enable S3 Block Public Access and create a VPC endpoint so that CloudFront can access S3 privately</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Origin Access Control (OAC) is the recommended method for restricting S3 access to CloudFront only. OAC supports SSE-KMS encrypted objects, all S3 regions (including opt-in regions), and dynamic requests (PUT/DELETE). The S3 bucket policy is updated to allow only the CloudFront distribution's service principal, blocking direct access.
+
+- Why A is wrong: Public read access allows anyone to access S3 directly via the bucket URL, completely bypassing CloudFront and its WAF rules — the exact problem the company needs to solve.
+
+- Why B is wrong: Origin Access Identity (OAI) does not support SSE-KMS encryption. Since the objects are encrypted with SSE-KMS, OAI would fail to retrieve them. AWS recommends migrating from OAI to OAC.
+
+- Why D is wrong: CloudFront is a global edge service and does not use VPC endpoints to reach S3. VPC endpoints are for resources within a VPC, not for CloudFront distributions.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 26 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A security engineer is configuring an AWS CodeBuild project that must access a private Amazon RDS instance in a VPC for integration testing during the build phase. The build also needs to download dependencies from public package registries on the internet. Which TWO configurations are required to meet both requirements? (Select TWO)</div>
+<ul class="q-options"><li>Enable the 'Assign Public IP' option in the CodeBuild VPC configuration so the build environment can access both the private database and the internet simultaneously</li>
+<li>Create AWS PrivateLink interface endpoints for all external package registries in the VPC so CodeBuild can download dependencies without internet access</li>
+<li>Run CodeBuild without VPC configuration and use VPC peering between the CodeBuild managed VPC and the database VPC to allow connectivity</li>
+<li class="correct">✓ Specify the VPC ID, private subnets, and a security group in the CodeBuild project configuration that permits traffic to the RDS instance</li>
+<li>Store all external dependencies in an Amazon S3 bucket and configure a gateway VPC endpoint for S3, eliminating the need for internet access</li>
+<li class="correct">✓ Route outbound traffic from the CodeBuild private subnets through a NAT gateway in a public subnet to allow internet access for downloading dependencies</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct (D &amp; F): When CodeBuild is attached to a VPC, its build containers run inside the specified private subnets and cannot reach the internet directly because CodeBuild network interfaces do not receive public IP addresses. To access the private RDS instance, the CodeBuild project must be configured with the VPC ID, the private subnets, and a security group that allows outbound traffic to the database (D). To restore internet access for downloading dependencies, the private subnets must route outbound traffic through a NAT gateway in a public subnet (F).
+
+- Why A is wrong: CodeBuild does not support assigning public IP addresses to its VPC network interfaces. Even if it did, placing builds in a public subnet would expose them to inbound internet traffic, which is a security risk. Internet access for VPC-attached builds requires a NAT gateway.
+
+- Why B is wrong: AWS PrivateLink provides private connectivity to supported AWS services and some third-party SaaS endpoints, but it cannot replace general internet access for downloading packages from arbitrary public registries (npm, PyPI, Maven Central, etc.). Creating endpoints for every public registry is not feasible.
+
+- Why C is wrong: CodeBuild does not run in its own managed VPC. Without VPC configuration, CodeBuild runs in an AWS-managed network environment and cannot reach resources inside your VPC. There is no CodeBuild VPC to peer with.
+
+- Why E is wrong: While storing dependencies in S3 with a gateway endpoint avoids internet access, this does not address the requirement to reach the private RDS instance for integration testing. It also introduces significant operational overhead to maintain a mirror of all dependencies in S3.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 27 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A security analyst at a financial services company suspects that compromised EC2 instances may be using DNS to communicate with command-and-control servers. The analyst wants to monitor suspicious DNS queries without disrupting legitimate application traffic while the investigation is underway. Which Route 53 Resolver DNS Firewall configuration achieves this?</div>
+<ul class="q-options"><li>Create a DNS Firewall rule group with a BLOCK action for all domains on the threat intelligence list</li>
+<li class="correct">✓ Create a DNS Firewall rule group with an ALERT action for domains on a threat intelligence list, logging matches to CloudWatch while allowing resolution</li>
+<li>Disable DNS logging to reduce noise during the investigation</li>
+<li>Configure DNS Firewall to redirect all suspicious queries to an on-premises DNS sinkhole</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: Route 53 Resolver DNS Firewall supports three actions: ALLOW, BLOCK, and ALERT. The ALERT action logs matching DNS queries to CloudWatch Logs (or S3) while still allowing the query to resolve. This gives the analyst visibility into potentially malicious DNS activity — such as C2 callbacks — without disrupting legitimate application traffic during an active investigation.
+
+- Why A is wrong: A BLOCK action would immediately prevent resolution of flagged domains, which could disrupt legitimate traffic and tip off an attacker that monitoring is in place. The analyst specifically needs passive monitoring.
+
+- Why C is wrong: Disabling DNS logging removes visibility entirely, which is the opposite of what's needed for threat investigation.
+
+- Why D is wrong: Route 53 Resolver DNS Firewall does not have a redirect or sinkhole action. It operates with ALLOW, BLOCK, and ALERT actions only. DNS sinkholing would require a separate on-premises or third-party solution.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 28 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A security engineer runs IAM Access Analyzer at the organization level and discovers 47 findings. Some show S3 buckets intentionally shared with a partner organization under an approved data-sharing agreement, while others reveal IAM roles with unintended cross-account trust policies granting access to unknown external accounts. The engineer needs to address both categories efficiently. Which TWO actions should the engineer take? (Select TWO)</div>
+<ul class="q-options"><li>Delete all S3 buckets and IAM roles that generated Access Analyzer findings</li>
+<li class="correct">✓ Archive findings for the S3 buckets shared under the approved partner agreement</li>
+<li class="correct">✓ Modify the IAM role trust policies to remove the unintended external account principals</li>
+<li>Disable IAM Access Analyzer at the organization level to stop generating new findings</li>
+<li>Ignore all findings since organization-level analyzers produce false positives for cross-account access</li>
+<li>Apply an SCP that denies all cross-account access across the organization to resolve all findings at once</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct (B - Archive findings &amp; C - Remove external access): IAM Access Analyzer findings require action based on intent. For resources intentionally shared with external entities (the partner S3 buckets), archiving the finding marks it as reviewed and expected — removing it from the active findings list without changing access. For unintended external access (the unknown IAM role trust policies), the engineer should modify the resource policy to remove the unauthorized external principal, which resolves the finding at its source. Together, these actions demonstrate proper finding triage: archive what is intentional, remediate what is not.
+
+- Why A is wrong: Deleting all flagged S3 buckets and IAM roles is a disproportionate response. The S3 buckets serve a legitimate, approved business purpose. Remediation should be targeted — remove unintended access from trust policies while preserving intentionally shared resources.
+
+- Why D is wrong: Disabling Access Analyzer eliminates ongoing visibility into external access. New unintended external access grants would go undetected. The correct approach is to remediate or archive individual findings while keeping the analyzer active for continuous monitoring.
+
+- Why E is wrong: Ignoring all findings leaves unintended cross-account access to IAM roles unaddressed, creating a potential lateral-movement path for attackers. Even though some findings are intentional, the unintended findings represent real security risk that requires remediation.
+
+- Why F is wrong: Applying a blanket deny SCP to block all cross-account access would also block the approved partner data-sharing arrangement. This is overly broad and does not distinguish between intentional and unintended external access — the nuance that archive vs. remediate properly handles.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 29 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A company uses Amazon GuardDuty across all accounts. When GuardDuty detects an EC2 instance performing cryptocurrency mining (CryptoCurrency:EC2/BitcoinTool.B!DNS), the security team currently takes 45 minutes to manually isolate the instance. Management requires automated isolation within 2 minutes of detection while preserving the instance for forensic analysis. Which approach meets these requirements?</div>
+<ul class="q-options"><li>Configure GuardDuty to automatically terminate EC2 instances that generate cryptocurrency mining findings</li>
+<li class="correct">✓ Create an EventBridge rule matching the GuardDuty CryptoCurrency finding type that invokes a Lambda function to replace the instance's security groups with an isolation security group blocking all traffic</li>
+<li>Set up a CloudWatch alarm on EC2 CPU utilization to detect mining activity and trigger an Auto Scaling policy to terminate and replace the instance</li>
+<li>Create an SNS topic subscribed to GuardDuty and send email notifications to the security team with a pre-written isolation runbook</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: An EventBridge rule can match the specific GuardDuty finding type (source: aws.guardduty, detail-type: GuardDuty Finding, with a pattern on detail.type for CryptoCurrency:EC2) and invoke a Lambda function within seconds. The Lambda function calls the EC2 API to replace the instance's security groups with a pre-created isolation security group that has no inbound or outbound rules, cutting off network access while keeping the instance running for forensic analysis. This achieves fast automated isolation without destroying evidence.
+
+- Why A is wrong: GuardDuty is a detection service only — it does not have a built-in capability to terminate or isolate instances. You must use a downstream service like Lambda or Systems Manager to take remediation action on GuardDuty findings.
+
+- Why C is wrong: CloudWatch CPU alarms detect high utilization, not cryptocurrency mining specifically. Legitimate workloads can spike CPU, causing false positives. More importantly, Auto Scaling termination destroys the compromised instance, eliminating volatile forensic evidence (memory, running processes) that the security team needs.
+
+- Why D is wrong: SNS email notification still relies on a human to read the email, log in, and manually isolate the instance. This does not meet the under-2-minute automated response requirement — email-based human-in-the-loop workflows typically take 30+ minutes.</p></div>
+</details>
+</div>
+<div class="q-card">
+<div class="q-num">Quiz 30 — Sample Question</div>
+<div class="q-domain"></div>
+<div class="q-text">A financial services company operates across 12 AWS accounts and must demonstrate continuous PCI DSS compliance to auditors quarterly. The compliance team needs to detect non-compliant resources in near real-time, maintain a centralized compliance dashboard across all accounts, and automatically collect structured audit evidence. Which combination of services meets all three requirements?</div>
+<ul class="q-options"><li class="correct">✓ Enable AWS Config with a PCI DSS conformance pack and a Config aggregator for centralized compliance dashboards, and use AWS Audit Manager with the PCI DSS framework for automated evidence collection</li>
+<li>Deploy Amazon Inspector across all accounts to scan for PCI DSS violations, store results in a centralized S3 bucket, and use Amazon QuickSight for compliance dashboards</li>
+<li>Enable AWS CloudTrail organization trail and use CloudWatch Logs Insights to query for non-compliant API calls across all accounts, and download AWS Artifact PCI reports quarterly</li>
+<li>Enable AWS Security Hub with the PCI DSS standard across all accounts, use Trusted Advisor organizational view for compliance reporting, and use AWS Artifact for audit evidence</li>
+</ul>
+<details>
+<summary>Show Explanation</summary>
+<div class="q-explain"><p>- Why correct: AWS Config with a PCI DSS conformance pack provides pre-built rules that continuously evaluate resource compliance (e.g., encryption enabled, logging active). A Config aggregator centralizes compliance data from all 12 accounts into a single dashboard. AWS Audit Manager's PCI DSS framework automates evidence collection from Config, CloudTrail, and Security Hub, organizing it by control for auditor review. This combination addresses all three requirements: near real-time detection (Config rules), centralized dashboard (Config aggregator), and automated evidence collection (Audit Manager).
+
+- Why B is wrong: Amazon Inspector scans for software vulnerabilities and network exposure — it does not evaluate PCI DSS compliance controls such as encryption settings, access controls, or logging configurations. QuickSight can visualize data but requires manual dashboard creation and doesn't provide the structured audit evidence that Audit Manager generates.
+
+- Why C is wrong: CloudTrail logs API activity but does not evaluate resource configurations against compliance standards. CloudWatch Logs Insights requires custom queries for each PCI DSS control. AWS Artifact provides AWS's own compliance certifications (SOC, PCI AOC) — it does not collect evidence from YOUR environment for audits.
+
+- Why D is wrong: Security Hub's PCI DSS standard provides compliance checks but Trusted Advisor does not offer PCI DSS-specific compliance reporting. AWS Artifact provides AWS's compliance attestation documents, not customer-specific audit evidence. This combination lacks automated evidence collection for auditor review.</p></div>
+</details>
 </div>
 
-<div class="section">
-<h2>Career Impact</h2>
-<p>AWS certified professionals earn significantly higher salaries. This certification demonstrates your commitment to excellence and validates your skills to employers worldwide.</p>
-</div>
-
-<div class="section">
-<h2>Ready to Get Certified?</h2>
-<p>Join thousands who passed their AWS Security Specialty exam with <a href="https://nestedcerts.com">NestedCerts</a>. Start with free practice questions and see why our platform has a 92% pass rate.</p>
-<a href="https://nestedcerts.com/certifications" class="cta">View All Certifications →</a>
+<div class="section" style="text-align:center;">
+<h2>Ready for the Full Question Bank?</h2>
+<p>You've seen 30 questions — there are 700+ more waiting for you on <a href="https://nestedcerts.com">NestedCerts</a>, plus full-length practice exams, performance analytics, and a structured 30-day study plan.</p>
+<a href="https://nestedcerts.com/pricing" class="cta">View Pricing →</a>
+<a href="https://nestedcerts.com/articles/security-specialty" class="cta cta-secondary">Read SCS-C03 Guide →</a>
 </div>
 
 <div class="footer">
-<p>© 2026 <a href="https://nestedcerts.com">NestedCerts</a> | <a href="https://nestedcerts.com/pricing">Pricing</a> | <a href="https://nestedcerts.com/help">Help</a> | <a href="https://nestedcerts.com/certifications">All Certs</a></p>
+<p>© 2026 <a href="https://nestedcerts.com">NestedCerts</a> | <a href="https://nestedcerts.com/pricing">Pricing</a> | <a href="https://nestedcerts.com/help">Help</a> | <a href="https://nestedcerts.com/certifications">All Certs</a> | <a href="https://nestedcerts.com/faq">FAQ</a></p>
 </div>
+
 </div>
 </body>
 </html>
